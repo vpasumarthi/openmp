@@ -17,6 +17,8 @@ int main()
 
 #pragma omp parallel default(none) shared(a) private(x)
 {
+
+    printf("x = %d\n", x);
     x = omp_get_thread_num() + 100;
 
 #pragma omp for
