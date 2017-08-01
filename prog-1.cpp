@@ -13,9 +13,9 @@ int main()
 
     a.resize(size);
 
-    double start = omp_get_wtime(); // returns present timestamp in double
+    //double start = omp_get_wtime(); // returns present timestamp in double
 
-#pragma omp parallel
+#pragma omp parallel default(none) shared(a, x)
 {
     x = omp_get_thread_num() + 100;
 
