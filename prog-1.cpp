@@ -5,36 +5,28 @@
 #include <stdio.h>
 #include <math.h>
 
-int main()
+
+double two_body_energy(int i, int j)
 {
-    const int size = 10000;
-    std::vector<double> a;
-    int x = -1;
-
-    a.resize(size);
-
-    //double start = omp_get_wtime(); // returns present timestamp in double
-
-#pragma omp parallel default(none) shared(a) firstprivate(x) //firstprivate initializes private variable to the declared value
-{
-
-    printf("x = %d\n", x);
-    x = omp_get_thread_num() + 100;
-
-#pragma omp for
-    for (int i = 0; i < size; i++)
-    {
-        a[i] = 0;
-        for (int j = 0; j < size; j++)
-        {
-            a[i] += sqrt(sqrt(i+j));
-        }
-   }
+    return ((double) i + (double) j) / 10.0;
 }
 
-    std::cout << "x = " << x << std::endl;
 
-    //double stop = omp_get_wtime();
-    //std::cout << "time: " << stop - start << std::endl;
+int main()
+{
+    const int nbodies = 1000;
+    double energy = 0.0;
+
+#pragma omp parallel for
+    for (int i = 0; i < nbodies; i++)
+    {
+        for (int j = 0; j < nbodies; j++)
+        {
+            double eij = two_body_energy(i, j);
+            energy += eij;
+        }
+   }
+
+    std::cout << "energy = " << energy << std::endl;
     return 0;
 }
