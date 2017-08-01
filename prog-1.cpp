@@ -3,6 +3,6 @@
 
 int main()
 {
-    std::cout << "OpenMP will use " << omp_get_num_threads() << " threads" << std::endl;
+    std::cout << "OpenMP will use " << omp_get_max_threads() << " threads" << std::endl;
     return 0;
 }
