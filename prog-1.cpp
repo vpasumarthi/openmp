@@ -9,6 +9,7 @@ int main()
 {
     const int size = 10000;
     std::vector<double> a;
+    int x = -1;
 
     a.resize(size);
 
@@ -16,6 +17,8 @@ int main()
 
 #pragma omp parallel
 {
+    x = omp_get_thread_num() + 100;
+
 #pragma omp for
     for (int i = 0; i < size; i++)
     {
@@ -26,7 +29,10 @@ int main()
         }
    }
 }
-    double stop = omp_get_wtime();
-    std::cout << "time: " << stop - start << std::endl;
+
+    std::cout << "x = " << x << std::endl;
+
+    //double stop = omp_get_wtime();
+    //std::cout << "time: " << stop - start << std::endl;
     return 0;
 }
