@@ -15,7 +15,7 @@ int main()
 
     //double start = omp_get_wtime(); // returns present timestamp in double
 
-#pragma omp parallel default(none) shared(a) private(x)
+#pragma omp parallel default(none) shared(a) firstprivate(x) //firstprivate initializes private variable to the declared value
 {
 
     printf("x = %d\n", x);
