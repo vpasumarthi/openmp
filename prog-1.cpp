@@ -14,7 +14,9 @@ int main()
 
     double start = omp_get_wtime(); // returns present timestamp in double
 
-#pragma omp parallel for
+#pragma omp parallel
+{
+#pragma omp for
     for (int i = 0; i < size; i++)
     {
         a[i] = 0;
@@ -22,8 +24,8 @@ int main()
         {
             a[i] += sqrt(sqrt(i+j));
         }
-    }
-
+   }
+}
     double stop = omp_get_wtime();
     std::cout << "time: " << stop - start << std::endl;
     return 0;
