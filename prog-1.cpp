@@ -14,7 +14,9 @@ int main()
 
     double start = omp_get_wtime(); // returns present timestamp in double
 
-    for (int i = 0; i < size; i++) {
+#pragma omp parallel for
+    for (int i = 0; i < size; i++)
+    {
         a[i] = 0;
         for (int j = 0; j < size; j++)
         {
