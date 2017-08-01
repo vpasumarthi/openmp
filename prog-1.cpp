@@ -6,9 +6,7 @@ int main()
 {
 #pragma omp parallel //prompts compiler to execute the next block of code in braces in parallel
     {
-        std::stringstream ss;
-        ss << "OpenMP will use " << omp_get_max_threads() << " threads." << std::endl;
-        std::cout << ss.str();
+        printf("hello from thread %d of %d\n", omp_get_thread_num(), omp_get_num_threads());
     }
     return 0;
 }
