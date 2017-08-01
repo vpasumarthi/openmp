@@ -1,12 +1,8 @@
 #include <iostream>
+#include <omp.h>
 
-int
-main()
+int main()
 {
-#ifdef _OPENMP
-	std::cout << "Hello, OpenMP!" << std::endl;
-#else
-        std::cout << "Hello, world!" << std::endl;
-#endif 
-       return 0;
+    std::cout << "OpenMP will use " << omp_get_num_threads() << " threads" << std::endl;
+    return 0;
 }
